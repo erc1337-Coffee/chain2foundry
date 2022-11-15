@@ -11,6 +11,8 @@
 
 ## Install
 ```
+sudo git clone https://github.com/erc1337-Coffee/chain2foundry
+cd chain2foundry/
 sudo apt install python3
 sudo python3 -m pip install -r requirements.txt
 ```
