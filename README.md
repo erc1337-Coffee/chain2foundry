@@ -39,10 +39,10 @@ optional arguments:
 
 ## Example
 ```
-$ python3 chain2foundry.py -a 0x8A98E5c8211D20C6c1c82c78c46f5A0528062881 -f
+$ python3 chain2foundry.py -a 0x8A98E5c8211D20C6c1c82c78c46f5A0528062881 -n goerli -o /tmp/ -f
 
 Fetching the contract source code from Etherscan API...
-Creating project ApeCoinStaking at projects/ApeCoinStaking
+Creating project ApeCoinStaking at /tmp/ApeCoinStaking
 Done ! gl hf fren :)
 ```
 
@@ -52,4 +52,3 @@ Done ! gl hf fren :)
 - [ ] Automate tests creation
 - [ ] Automate constructor arguments parsing
 - [ ] How cool would it be if the script deployed contracts & populated them on an Anvil node with the same data as currently on-chain ?
-

@@ -54,6 +54,8 @@ except Exception as error:
 # Output directory mgmt
 if(args["output_dir"] == None):
 	args["output_dir"] = "projects/%s" % etherscanObj.contract_name
+else:
+	args["output_dir"] = "%s%s" % (args["output_dir"], etherscanObj.contract_name)
 filesManager = Manager(args["output_dir"], args["force"], etherscanObj.compiler_version, etherscanObj.contract_name)
 
 # Loop
