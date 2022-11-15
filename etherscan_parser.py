@@ -4,13 +4,14 @@ from termcolor import cprint
 
 class Parser(object):
 	"""Etherscan Parser used to fetch verified contract source code"""
-	def __init__(self, address, api_key):
+	def __init__(self, address, network, api_key):
 		super(Parser, self).__init__()
 		self.address = address
+		self.network = network
 		self.api_key = api_key
 		self.contract_name = None
 		self.compiler_version = None
-		if(address == "mainnet"):
+		if(network == "mainnet"):
 			self.etherscan_url = "api.etherscan.io"
 		else:
 			self.etherscan_url = "api-goerli.etherscan.io"

@@ -32,7 +32,7 @@ class Manager(object):
 		content_parsed = ""
 		for line in content.split('\n'):
 			if('import "@' in str(line)):
-				line = 'import "%s' % line.split('contracts/')[1]
+				line = 'import "./%s' % line.split('contracts/')[1]
 			content_parsed += "%s\n" % line
 		# dirty tweak to remove any non UTF-8 char
 		content_parsed = content_parsed.encode('ascii', 'ignore').decode('utf-8', 'ignore')

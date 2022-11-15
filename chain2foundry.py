@@ -44,12 +44,13 @@ argument_parser.add_argument(
 args = vars(argument_parser.parse_args())
 
 # Fetch source code from etherscan API
-etherscanObj = Parser(args["address"], args["api-key"])
+etherscanObj = Parser(args["address"], args["network"], args["api-key"])
 print("Fetching the contract source code from Etherscan API...")
 try:
 	json_result = etherscanObj.get_contract()
 except Exception as error:
 	cprint("[ERROR] Error while fetching the source code: %s" % error,"red",attrs=["bold"])
+	exit(1)
 
 # Output directory mgmt
 if(args["output_dir"] == None):
