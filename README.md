@@ -49,6 +49,8 @@ Done ! gl hf fren :)
 ## Todo
 
 - [ ] Test it to find bugs and edge cases
+- [ ] Proxies ?
+- [ ] Support all chains (if there's an API to fetch contract sources aka Polygon, AVAX, Arbitrum, Optimism...)
 - [ ] Automate tests creation
 - [ ] Automate constructor arguments parsing
 - [ ] How cool would it be if the script deployed contracts & populated them on an Anvil node with the same data as currently on-chain ?

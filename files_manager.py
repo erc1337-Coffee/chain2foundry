@@ -23,7 +23,11 @@ class Manager(object):
 			self.is_library = True
 			filename = filename.split('contracts/')[1]
 		else:
-			filename = filename.split('contracts/')[1]
+			try:
+				filename = filename.split('contracts/')[1]
+			except:
+				if not ".sol" in filename:
+					filename += ".sol"
 		path = '%s/src/%s' % (self.output_directory, filename)
 		basedir = os.path.dirname(path)
 		if not os.path.exists(basedir):

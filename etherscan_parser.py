@@ -17,10 +17,27 @@ class Parser(object):
 			self.etherscan_url = "api-goerli.etherscan.io"
 	def get_contract(self):
 		url = "https://%s/api?module=contract&action=getsourcecode&address=%s&apikey=%s" % (self.etherscan_url, self.address, self.api_key)
-		json_result = json.loads(json.loads(requests.get(url).content)["result"][0]["SourceCode"][1:][:-1])
-		self.contract_name = json.loads(requests.get(url).content)["result"][0]["ContractName"]
-		self.compiler_version = json.loads(requests.get(url).content)["result"][0]["CompilerVersion"]
-		if(json_result["language"] != "Solidity"):
-			cprint("[ERROR] Contract language is not Solidity","red",attrs=["bold"])
+		data = json.loads(requests.get(url).content)["result"][0]
+
+		# Check if the contract is verified
+		if(data["ABI"] == "Contract source code not verified"):
+			cprint("[ERROR] Contract not verified","red",attrs=["bold"])
 			exit(1)
+		
+		# Check if the contract is a proxy
+		if(int(data["Proxy"])):
+			cprint("[ERROR] Contract is a proxy.. I'll fix that asap I swear","red",attrs=["bold"])
+			exit(1)
+
+		self.contract_name = data["ContractName"]
+		self.compiler_version = data["CompilerVersion"]
+
+		# Dirty tweak to manage  one-file contract & multiple files contracts
+		try:
+			json_result = json.loads(data["SourceCode"][1:][:-1])
+			json_result["multifile"] = True
+		except:
+			# Yeah that's ugly af, you can judge me here (but it works hehe) 
+			json_result = json.loads("""{"sources": { "%s": { "content": %s }}}""" % (self.contract_name, json.dumps(data["SourceCode"].replace('"','\"')).replace('\\r\\n','\\n')))
+			json_result["multifile"] = False
 		return json_result

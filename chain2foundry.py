@@ -59,7 +59,6 @@ else:
 	args["output_dir"] = "%s%s" % (args["output_dir"], etherscanObj.contract_name)
 filesManager = Manager(args["output_dir"], args["force"], etherscanObj.compiler_version, etherscanObj.contract_name)
 
-# Loop
 for contract in json_result["sources"]:
 	filesManager.create(contract, json_result["sources"][contract]["content"])
 
