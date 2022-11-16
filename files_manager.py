@@ -43,9 +43,17 @@ class Manager(object):
 		with open(path, 'w') as f:
 			f.write(content_parsed)
 		if not self.is_library:
-			with open("%s/script/%s" % (self.output_directory, filename.replace('.sol', '.s.sol')), 'w') as f:
+			script_path = "%s/script/%s" % (self.output_directory, filename.replace('.sol', '.s.sol'))
+			test_path = "%s/test/%s" % (self.output_directory, filename.replace('.sol', '.t.sol'))
+			basedir = os.path.dirname(script_path)
+			if not os.path.exists(basedir):
+				os.makedirs(basedir)
+			with open(script_path, 'w') as f:
 				f.write(self.generate_script_files(filename))
-			with open("%s/test/%s" % (self.output_directory, filename.replace('.sol', '.t.sol')), 'w') as f:
+			basedir = os.path.dirname(test_path)
+			if not os.path.exists(basedir):
+				os.makedirs(basedir)
+			with open(test_path, 'w') as f:
 				f.write(self.generate_test_files(filename))
 	def generate_script_files(self, filename):
 		solidity_version = re.findall(r'\d{0,2}\.\d{0,2}\.\d{0,2}',self.compiler_version)[0]
