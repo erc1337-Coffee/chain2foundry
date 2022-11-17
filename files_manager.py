@@ -19,12 +19,16 @@ class Manager(object):
 			cprint("[ERROR] The output directory is already existing, use the -f or --force argument to overwwrite it","red",attrs=["bold"])
 			exit(1)
 	def create(self, filename, content):
+		if("/contracts-upgradeable/" in filename):
+			split_segment = "contracts-upgradeable/"
+		else:
+			split_segment = "contracts/"
 		if(filename.startswith('@')):
 			self.is_library = True
-			filename = filename.split('contracts/')[1]
+			filename = filename.split(split_segment)[1]
 		else:
 			try:
-				filename = filename.split('contracts/')[1]
+				filename = filename.split(split_segment)[1]
 			except:
 				if not ".sol" in filename:
 					filename += ".sol"
@@ -36,7 +40,7 @@ class Manager(object):
 		content_parsed = ""
 		for line in content.split('\n'):
 			if('import "@' in str(line)):
-				line = 'import "./%s' % line.split('contracts/')[1]
+				line = 'import "./%s' % line.split(split_segment)[1]
 			content_parsed += "%s\n" % line
 		# dirty tweak to remove any non UTF-8 char
 		content_parsed = content_parsed.encode('ascii', 'ignore').decode('utf-8', 'ignore')

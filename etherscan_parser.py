@@ -26,8 +26,8 @@ class Parser(object):
 		
 		# Check if the contract is a proxy
 		if(int(data["Proxy"])):
-			cprint("[ERROR] Contract is a proxy.. I'll fix that asap I swear","red",attrs=["bold"])
-			exit(1)
+			cprint("[ERROR] Contract is a proxy.. I'll fix that asap I swear. Expect bugs :(","red",attrs=["bold"])
+		#	exit(1)
 
 		self.contract_name = data["ContractName"]
 		self.compiler_version = data["CompilerVersion"]
