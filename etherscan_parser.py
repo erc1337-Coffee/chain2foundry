@@ -13,8 +13,10 @@ class Parser(object):
 		self.compiler_version = None
 		if(network == "mainnet"):
 			self.etherscan_url = "api.etherscan.io"
-		else:
+		elif(network == "goerli"):
 			self.etherscan_url = "api-goerli.etherscan.io"
+		elif(network == "arbi-main"):
+			self.etherscan_url = "arbitrum-mainnet.infura.io"
 	def get_contract(self):
 		url = "https://%s/api?module=contract&action=getsourcecode&address=%s&apikey=%s" % (self.etherscan_url, self.address, self.api_key)
 		data = json.loads(requests.get(url).content)["result"][0]

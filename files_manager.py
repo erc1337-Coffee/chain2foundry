@@ -41,6 +41,8 @@ class Manager(object):
 		for line in content.split('\n'):
 			if('import "@' in str(line)):
 				line = 'import "./%s' % line.split(split_segment)[1]
+			elif('from "@' in str(line)):
+				line = line.replace('from "@', 'from "./')
 			content_parsed += "%s\n" % line
 		# dirty tweak to remove any non UTF-8 char
 		content_parsed = content_parsed.encode('ascii', 'ignore').decode('utf-8', 'ignore')

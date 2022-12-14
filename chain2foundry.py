@@ -19,13 +19,13 @@ argument_parser.add_argument(
 	dest='network', 
 	type=str, 
 	default="mainnet",
-	help="Network the contract is deployed on (default:mainnet / goerli)"
+	help="Network the contract is deployed on (default:mainnet / goerli / arbi-main)"
 )
 argument_parser.add_argument(
 	'-k', '--api-key', 
 	dest='api-key', 
 	type=str, 
-	default="VBX8N7APZM6Q2S4FTIRWYWRXPG4P3KG1NG",
+	default="F94C7BB141C74CA4933A547B77CD7151",
 	help="Etherscan API key (default: None)"
 )
 argument_parser.add_argument(
