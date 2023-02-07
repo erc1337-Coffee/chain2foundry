@@ -16,7 +16,7 @@ class Parser(object):
 		elif(network == "goerli"):
 			self.etherscan_url = "api-goerli.etherscan.io"
 		elif(network == "arbi-main"):
-			self.etherscan_url = "arbitrum-mainnet.infura.io"
+			self.etherscan_url = "api.arbiscan.io"
 	def get_contract(self):
 		url = "https://%s/api?module=contract&action=getsourcecode&address=%s&apikey=%s" % (self.etherscan_url, self.address, self.api_key)
 		data = json.loads(requests.get(url).content)["result"][0]

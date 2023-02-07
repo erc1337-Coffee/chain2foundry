@@ -37,15 +37,16 @@ class Manager(object):
 		if not os.path.exists(basedir):
 			os.makedirs(basedir)
 		# edit libraries from remote to local by removing the @ in the import
-		content_parsed = ""
-		for line in content.split('\n'):
-			if('import "@' in str(line)):
-				line = 'import "./%s' % line.split(split_segment)[1]
-			elif('from "@' in str(line)):
-				line = line.replace('from "@', 'from "./')
-			content_parsed += "%s\n" % line
+		#content_parsed = ""
+		#for line in content.split('\n'):
+		#	print(line)
+		#	if('import "@' in str(line)):
+		#		line = 'import "./%s' % line.split(split_segment)[1]
+		#	elif('from "@' in str(line)):
+		#		line = line.replace('from "@', 'from "./')
+		#	content_parsed += "%s\n" % line
 		# dirty tweak to remove any non UTF-8 char
-		content_parsed = content_parsed.encode('ascii', 'ignore').decode('utf-8', 'ignore')
+		content_parsed = content.encode('ascii', 'ignore').decode('utf-8', 'ignore')
 		with open(path, 'w') as f:
 			f.write(content_parsed)
 		if not self.is_library:

@@ -25,8 +25,8 @@ argument_parser.add_argument(
 	'-k', '--api-key', 
 	dest='api-key', 
 	type=str, 
-	default="F94C7BB141C74CA4933A547B77CD7151",
-	help="Etherscan API key (default: None)"
+	default="VBX8N7APZM6Q2S4FTIRWYWRXPG4P3KG1NG",
+	help="Etherscan API key (default: A shared one)"
 )
 argument_parser.add_argument(
 	'-o', '--output', 
